@@ -6,7 +6,9 @@ package br.utfpr.academia.view;
 
 import br.utfpr.academia.controller.PublicacaoController;
 import br.utfpr.academia.model.Publicacao;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,6 +23,7 @@ public class FormPublicacoes extends javax.swing.JFrame {
      */
     public FormPublicacoes() {
         initComponents();
+        atualizarTabelaPublicacoes();
     }
 
     /**
@@ -75,13 +78,13 @@ public class FormPublicacoes extends javax.swing.JFrame {
 
         PubTableCont.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null},
+                {null},
+                {null},
+                {null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Publicação"
             }
         ));
         PubTable.setViewportView(PubTableCont);
@@ -143,6 +146,7 @@ public class FormPublicacoes extends javax.swing.JFrame {
                     "A publicação deve ter no máximo 50 caracteres.",
                     "Limite de caracteres",
                     JOptionPane.WARNING_MESSAGE);
+            return;
         }
 
         try {
@@ -153,13 +157,14 @@ public class FormPublicacoes extends javax.swing.JFrame {
             pub.setVisibilidade(Publicacao.Visibilidade.PUBLICO); // prefixado
 
             new PublicacaoController().criarPublicacao(pub);
+            atualizarTabelaPublicacoes();
+            TextAreaCont.setText("");
 
             // Se chegou aqui, deu certo!
             JOptionPane.showMessageDialog(this,
                     "Publicação feita com sucesso",
                     "Publicação Criada",
                     JOptionPane.INFORMATION_MESSAGE);
-
         } catch (Exception ex) {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(this,
@@ -168,6 +173,19 @@ public class FormPublicacoes extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_BtPubActionPerformed
+
+    private void atualizarTabelaPublicacoes() {
+        List<Publicacao> publicacoes = new PublicacaoController().listarTodasPublicacoes();
+
+        // Só uma coluna "Publicação"
+        DefaultTableModel model = new DefaultTableModel(new Object[]{"Publicação"}, 0);
+
+        for (Publicacao p : publicacoes) {
+            model.addRow(new Object[]{p.getConteudo()});
+        }
+
+        PubTableCont.setModel(model);
+    }
 
     /**
      * @param args the command line arguments

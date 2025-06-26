@@ -14,7 +14,7 @@ public class PublicacaoDAO {
     }
 
     // RF08 - Criação de publicações
-    public boolean criarPublicacao(Publicacao publicacao) {
+    public void criarPublicacao(Publicacao publicacao) {
         String sql = "INSERT INTO publicacoes (usuario_id, conteudo) VALUES (?, ?)";
         try (PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setInt(1, publicacao.getUsuarioId());
@@ -24,10 +24,8 @@ public class PublicacaoDAO {
             try (ResultSet rs = stmt.getGeneratedKeys()) {
                 if (rs.next()) {
                     publicacao.setId(rs.getInt(1));
-                    return true;
                 }
             }
-            return false;
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Erro ao criar publicação", e);
@@ -63,6 +61,24 @@ public class PublicacaoDAO {
             }
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao listar publicações", e);
+        }
+        return publicacoes;
+    }
+
+    public List<Publicacao> listarTodasPublicacoes() {
+        List<Publicacao> publicacoes = new ArrayList<>();
+        String sql = "SELECT * FROM publicacoes ORDER BY data_publicacao DESC";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Publicacao p = new Publicacao();
+                p.setId(rs.getInt("id"));
+                p.setUsuarioId(rs.getInt("usuario_id"));
+                p.setConteudo(rs.getString("conteudo"));
+                publicacoes.add(p);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao listar todas as publicações", e);
         }
         return publicacoes;
     }
