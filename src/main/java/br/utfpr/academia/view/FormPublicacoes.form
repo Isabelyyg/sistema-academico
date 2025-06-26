@@ -138,7 +138,8 @@
         <Component class="javax.swing.JTable" name="PubTableCont">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="1" rowCount="4">
+              <Table columnCount="2" rowCount="4">
+                <Column editable="true" title="Usu&#xe1;rio" type="java.lang.Object"/>
                 <Column editable="true" title="Publica&#xe7;&#xe3;o" type="java.lang.Object"/>
               </Table>
             </Property>

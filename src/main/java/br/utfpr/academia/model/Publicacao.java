@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Publicacao {
+
     // Core attributes (RF08)
     private int id;
     private int usuarioId;
@@ -14,22 +15,24 @@ public class Publicacao {
     private String linkVideo;
     private TipoMidia tipoMidia;
     private Timestamp dataPublicacao;
-    
+
     // Interactions (RF09)
     private List<Curtida> curtidas;
     private List<Comentario> comentarios;
-    
+
     // Moderation (RF12)
     private boolean moderada;
     private String motivoModeracao;
-    
+
     // Privacy (RF11)
     private Visibilidade visibilidade;
-    
+
+    private Usuario usuario;
+
     public enum TipoMidia {
         TEXTO, IMAGEM, VIDEO, LINK
     }
-    
+
     public enum Visibilidade {
         PUBLICO, PRIVADO, CURSO
     }
@@ -163,10 +166,18 @@ public class Publicacao {
         return comentarios.size();
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Publicacao that = (Publicacao) o;
         return id == that.id;
     }
@@ -178,16 +189,17 @@ public class Publicacao {
 
     @Override
     public String toString() {
-        return "Publicacao{" +
-                "id=" + id +
-                ", usuarioId=" + usuarioId +
-                ", tipoMidia=" + tipoMidia +
-                ", visibilidade=" + visibilidade +
-                '}';
+        return "Publicacao{"
+                + "id=" + id
+                + ", usuarioId=" + usuarioId
+                + ", tipoMidia=" + tipoMidia
+                + ", visibilidade=" + visibilidade
+                + '}';
     }
 
     // Nested Class for Comments (RF09)
     public static class Comentario {
+
         private int id;
         private int usuarioId;
         private String conteudo;
@@ -238,6 +250,7 @@ public class Publicacao {
 
     // Nested Class for Likes
     public static class Curtida {
+
         private int usuarioId;
         private Timestamp data;
 
@@ -257,5 +270,9 @@ public class Publicacao {
         public void setUsuarioId(int usuarioId) {
             this.usuarioId = usuarioId;
         }
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

@@ -6,6 +6,8 @@ package br.utfpr.academia.view;
 
 import br.utfpr.academia.controller.PublicacaoController;
 import br.utfpr.academia.model.Publicacao;
+import br.utfpr.academia.model.Usuario;
+import br.utfpr.academia.session.SessaoUsuario;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -78,13 +80,13 @@ public class FormPublicacoes extends javax.swing.JFrame {
 
         PubTableCont.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Publicação"
+                "Usuário", "Publicação"
             }
         ));
         PubTable.setViewportView(PubTableCont);
@@ -151,10 +153,18 @@ public class FormPublicacoes extends javax.swing.JFrame {
 
         try {
             Publicacao pub = new Publicacao();
+
+            Usuario usuario = SessaoUsuario.getInstance().getUsuarioLogado();
+            if (usuario != null) {
+                pub.setUsuarioId(usuario.getId());
+            } else {
+                // para testes
+                pub.setUsuarioId(1);
+            }
+
             pub.setConteudo(textoPublicacao);
-            pub.setUsuarioId(1); // prefixado
-            pub.setTipoMidia(Publicacao.TipoMidia.TEXTO); // prefixado
-            pub.setVisibilidade(Publicacao.Visibilidade.PUBLICO); // prefixado
+            pub.setTipoMidia(Publicacao.TipoMidia.TEXTO); // fixo
+            pub.setVisibilidade(Publicacao.Visibilidade.PUBLICO); // fixo
 
             new PublicacaoController().criarPublicacao(pub);
             atualizarTabelaPublicacoes();
@@ -177,11 +187,17 @@ public class FormPublicacoes extends javax.swing.JFrame {
     private void atualizarTabelaPublicacoes() {
         List<Publicacao> publicacoes = new PublicacaoController().listarTodasPublicacoes();
 
-        // Só uma coluna "Publicação"
-        DefaultTableModel model = new DefaultTableModel(new Object[]{"Publicação"}, 0);
+        // Coluna com nome de usuário e sua publicação
+        DefaultTableModel model = new DefaultTableModel(new Object[]{"Usuário", "Publicação"}, 0);
 
         for (Publicacao p : publicacoes) {
-            model.addRow(new Object[]{p.getConteudo()});
+            String nomeUsuario = "Desconhecido";
+            // valida para ver se existe um usuário para está publicação
+            if (p.getUsuario() != null && p.getUsuario().getNome() != null) {
+                nomeUsuario = p.getUsuario().getNome();
+            }
+
+            model.addRow(new Object[]{nomeUsuario, p.getConteudo()});
         }
 
         PubTableCont.setModel(model);

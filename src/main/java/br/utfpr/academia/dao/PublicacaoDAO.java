@@ -1,6 +1,7 @@
 package br.utfpr.academia.dao;
 
 import br.utfpr.academia.model.Publicacao;
+import br.utfpr.academia.model.Usuario;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -67,7 +68,10 @@ public class PublicacaoDAO {
 
     public List<Publicacao> listarTodasPublicacoes() {
         List<Publicacao> publicacoes = new ArrayList<>();
-        String sql = "SELECT * FROM publicacoes ORDER BY data_publicacao DESC";
+        String sql = "SELECT p.*, u.nome FROM publicacoes p "
+                + "JOIN usuarios u ON p.usuario_id = u.id "
+                + "ORDER BY p.data_publicacao DESC";
+        
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
@@ -75,6 +79,11 @@ public class PublicacaoDAO {
                 p.setId(rs.getInt("id"));
                 p.setUsuarioId(rs.getInt("usuario_id"));
                 p.setConteudo(rs.getString("conteudo"));
+
+                Usuario u = new Usuario();
+                u.setNome(rs.getString("nome"));
+
+                p.setUsuario(u);
                 publicacoes.add(p);
             }
         } catch (SQLException e) {

@@ -18,6 +18,7 @@ package br.utfpr.academia.view;
 
 import br.utfpr.academia.controller.LoginController;
 import br.utfpr.academia.model.Usuario;
+import br.utfpr.academia.session.SessaoUsuario;
 import javax.swing.JOptionPane;
 
 public class FormPrincipal extends javax.swing.JFrame {
@@ -154,6 +155,9 @@ public class FormPrincipal extends javax.swing.JFrame {
 
         try {
             Usuario usuarioAutenticado = new LoginController().autenticar(email, senha);
+            
+            // armazena o usuario autenticado
+            SessaoUsuario.getInstance().setUsuarioLogado(usuarioAutenticado);
 
             // Se chegou aqui, deu certo!
             JOptionPane.showMessageDialog(this,
