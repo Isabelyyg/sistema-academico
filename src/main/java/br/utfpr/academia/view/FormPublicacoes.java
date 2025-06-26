@@ -197,7 +197,7 @@ public class FormPublicacoes extends javax.swing.JFrame {
     }//GEN-LAST:event_BtPubActionPerformed
 
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
-        FormPrincipal novaTela = new FormPrincipal();
+        FormPerfil novaTela = new FormPerfil();
         novaTela.setSize(this.getSize());        // <-- Mesmo tamanho da tela anterior
         novaTela.setLocation(this.getLocation()); // <-- Mesma posição (opcional)
         novaTela.setVisible(true);

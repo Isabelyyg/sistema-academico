@@ -24,5 +24,7 @@ public class UsuarioController {
         usuarioDAO.cadastrarUsuario(usuario);
     }
 
-    // Outros métodos de controle...
+    public Usuario buscarUsuarioPorId(int id) {
+        return usuarioDAO.buscarPorId(id);
+    }
 }

@@ -34,10 +34,10 @@
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="InputFraseSecreta" alignment="0" max="32767" attributes="0"/>
                           <Component id="LbFraseSecreta" alignment="0" max="32767" attributes="0"/>
-                          <Component id="InputEmail" alignment="0" max="32767" attributes="0"/>
                           <Component id="LbEmail" alignment="0" max="32767" attributes="0"/>
                           <Component id="LbVoltarLogin" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="btRecuperar" alignment="0" max="32767" attributes="0"/>
+                          <Component id="InputEmail" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>

@@ -4,12 +4,17 @@
  */
 package br.utfpr.academia.view;
 
+import br.utfpr.academia.controller.UsuarioController;
+import br.utfpr.academia.model.Usuario;
+import br.utfpr.academia.session.SessaoUsuario;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author luism
  */
 public class FormPerfil extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FormPerfil.class.getName());
 
     /**
@@ -17,6 +22,43 @@ public class FormPerfil extends javax.swing.JFrame {
      */
     public FormPerfil() {
         initComponents();
+        carregarDadosUsuario();
+    }
+
+    private void carregarDadosUsuario() {
+        try {
+            Usuario usuarioLogado = SessaoUsuario.getInstance().getUsuarioLogado();
+            if (usuarioLogado == null) {
+                throw new Exception("Sessão expirada! Faça login novamente.");
+            }
+            Usuario usuario = new UsuarioController().buscarUsuarioPorId(usuarioLogado.getId());
+            if (usuario == null) {
+                JOptionPane.showMessageDialog(this, "Usuário não encontrado!", "Erro", JOptionPane.ERROR_MESSAGE);
+                // Redireciona para tela de login:
+                FormPrincipal login = new FormPrincipal();
+                login.setVisible(true);
+                this.dispose();
+                return;
+            }
+
+            // Preenche os campos:
+            InputNomeCompleto.setText(usuario.getNome());
+            InputCurso.setText(usuario.getCurso());
+            InputSemestre.setText(String.valueOf(usuario.getSemestre()));
+            InputPerguntaSecreta.setText(usuario.getPerguntaSecreta());
+            InputRespostaSecreta.setText(usuario.getRespostaSecreta());
+
+            InputNomeCompleto.setEditable(false);
+            InputCurso.setEditable(false);
+            InputSemestre.setEditable(false);
+            InputPerguntaSecreta.setEditable(false);
+            InputRespostaSecreta.setEditable(false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            FormPrincipal login = new FormPrincipal();
+            login.setVisible(true);
+            this.dispose();
+        }
     }
 
     /**
@@ -28,73 +70,73 @@ public class FormPerfil extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        Titulo = new javax.swing.JLabel();
+        LbNomeCompleto = new javax.swing.JLabel();
+        InputNomeCompleto = new javax.swing.JTextField();
+        LbCurso = new javax.swing.JLabel();
+        InputCurso = new javax.swing.JTextField();
+        LbSemestre = new javax.swing.JLabel();
+        InputSemestre = new javax.swing.JTextField();
+        LbPerguntaSecreta = new javax.swing.JLabel();
+        InputPerguntaSecreta = new javax.swing.JTextField();
+        LbRespostaSecreta = new javax.swing.JLabel();
+        InputRespostaSecreta = new javax.swing.JTextField();
+        BtVoltar = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setText("Meu Perfil");
+        Titulo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Titulo.setText("Meu Perfil");
 
-        jLabel2.setText("Nome Completo");
+        LbNomeCompleto.setText("Nome Completo");
 
-        jTextField1.setEditable(false);
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        InputNomeCompleto.setEditable(false);
+        InputNomeCompleto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                InputNomeCompletoActionPerformed(evt);
             }
         });
 
-        jLabel3.setText("Curso");
+        LbCurso.setText("Curso");
 
-        jTextField2.setEditable(false);
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        InputCurso.setEditable(false);
+        InputCurso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                InputCursoActionPerformed(evt);
             }
         });
 
-        jLabel4.setText("Semestre");
+        LbSemestre.setText("Semestre");
 
-        jTextField3.setEditable(false);
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        InputSemestre.setEditable(false);
+        InputSemestre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                InputSemestreActionPerformed(evt);
             }
         });
 
-        jLabel5.setText("Pergunta Secreta");
+        LbPerguntaSecreta.setText("Pergunta Secreta");
 
-        jTextField4.setEditable(false);
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        InputPerguntaSecreta.setEditable(false);
+        InputPerguntaSecreta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                InputPerguntaSecretaActionPerformed(evt);
             }
         });
 
-        jLabel6.setText("Resposta secreta");
+        LbRespostaSecreta.setText("Resposta secreta");
 
-        jTextField5.setEditable(false);
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        InputRespostaSecreta.setEditable(false);
+        InputRespostaSecreta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                InputRespostaSecretaActionPerformed(evt);
             }
         });
 
-        jToggleButton1.setText("Voltar");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        BtVoltar.setText("Voltar");
+        BtVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                BtVoltarActionPerformed(evt);
             }
         });
 
@@ -106,79 +148,83 @@ public class FormPerfil extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(236, 236, 236)
-                        .addComponent(jLabel1))
+                        .addComponent(Titulo))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(143, 143, 143)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel3)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
-                            .addComponent(jLabel2)
-                            .addComponent(jTextField1)
-                            .addComponent(jLabel4)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
-                            .addComponent(jLabel5)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
-                            .addComponent(jLabel6)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
-                            .addComponent(jToggleButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(LbCurso)
+                            .addComponent(InputCurso, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
+                            .addComponent(LbNomeCompleto)
+                            .addComponent(InputNomeCompleto)
+                            .addComponent(LbSemestre)
+                            .addComponent(InputSemestre, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
+                            .addComponent(LbPerguntaSecreta)
+                            .addComponent(InputPerguntaSecreta, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
+                            .addComponent(LbRespostaSecreta)
+                            .addComponent(InputRespostaSecreta, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
+                            .addComponent(BtVoltar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(142, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel1)
+                .addGap(10, 10, 10)
+                .addComponent(Titulo)
                 .addGap(15, 15, 15)
-                .addComponent(jLabel2)
+                .addComponent(LbNomeCompleto)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(InputNomeCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
-                .addComponent(jLabel3)
+                .addComponent(LbCurso)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(InputCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
-                .addComponent(jLabel4)
+                .addComponent(LbSemestre)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(InputSemestre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
-                .addComponent(jLabel5)
+                .addComponent(LbPerguntaSecreta)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(InputPerguntaSecreta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
-                .addComponent(jLabel6)
+                .addComponent(LbRespostaSecreta)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(jToggleButton1)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addComponent(InputRespostaSecreta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(BtVoltar)
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void InputNomeCompletoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputNomeCompletoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_InputNomeCompletoActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void InputCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputCursoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_InputCursoActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void InputSemestreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputSemestreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_InputSemestreActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void InputPerguntaSecretaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputPerguntaSecretaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_InputPerguntaSecretaActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void InputRespostaSecretaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputRespostaSecretaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_InputRespostaSecretaActionPerformed
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+    private void BtVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtVoltarActionPerformed
+        FormPublicacoes telaPub = new FormPublicacoes();
+        telaPub.setSize(this.getSize());
+        telaPub.setLocation(this.getLocation());
+        telaPub.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BtVoltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -206,17 +252,17 @@ public class FormPerfil extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JToggleButton BtVoltar;
+    private javax.swing.JTextField InputCurso;
+    private javax.swing.JTextField InputNomeCompleto;
+    private javax.swing.JTextField InputPerguntaSecreta;
+    private javax.swing.JTextField InputRespostaSecreta;
+    private javax.swing.JTextField InputSemestre;
+    private javax.swing.JLabel LbCurso;
+    private javax.swing.JLabel LbNomeCompleto;
+    private javax.swing.JLabel LbPerguntaSecreta;
+    private javax.swing.JLabel LbRespostaSecreta;
+    private javax.swing.JLabel LbSemestre;
+    private javax.swing.JLabel Titulo;
     // End of variables declaration//GEN-END:variables
 }

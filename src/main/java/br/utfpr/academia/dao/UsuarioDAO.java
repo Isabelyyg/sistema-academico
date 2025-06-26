@@ -98,7 +98,7 @@ public class UsuarioDAO {
             if (rs.next()) {
                 return rs.getString("senha");
             }
-            
+
             throw new IllegalArgumentException("Combinação email/resposta secreta inválida");
         } catch (SQLException e) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, "Erro na recuperação", e);
@@ -173,6 +173,21 @@ public class UsuarioDAO {
         } catch (SQLException e) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, "Erro ao verificar email", e);
             throw new RuntimeException("Erro ao verificar email", e);
+        }
+    }
+
+    public Usuario buscarPorId(int id) {
+        String sql = "SELECT * FROM usuarios WHERE id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return criarUsuarioFromResultSet(rs);
+            }
+            return null; // Não encontrou
+        } catch (SQLException e) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, "Erro ao buscar usuário por ID", e);
+            throw new RuntimeException("Erro ao buscar usuário", e);
         }
     }
 
