@@ -9,7 +9,8 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author luism
+ * @Author Isabely Aparecedia Gomes da Costa RA: 2337541
+ * @Author Luana Monteiro Ferreira
  */
 public class FormRecuperarSenha extends javax.swing.JFrame {
 
@@ -142,8 +143,8 @@ public class FormRecuperarSenha extends javax.swing.JFrame {
                     JOptionPane.INFORMATION_MESSAGE);
 
             FormPrincipal novaTela = new FormPrincipal();
-            novaTela.setSize(this.getSize());        // <-- Mesmo tamanho da tela anterior
-            novaTela.setLocation(this.getLocation()); // <-- Mesma posição (opcional)
+            novaTela.setSize(this.getSize());        
+            novaTela.setLocation(this.getLocation()); 
             novaTela.setVisible(true);
             this.dispose();
         } catch (Exception ex) {
@@ -156,8 +157,8 @@ public class FormRecuperarSenha extends javax.swing.JFrame {
 
     private void LbVoltarLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LbVoltarLoginMouseClicked
         FormPrincipal novaTela = new FormPrincipal();
-        novaTela.setSize(this.getSize());        // <-- Mesmo tamanho da tela anterior
-        novaTela.setLocation(this.getLocation()); // <-- Mesma posição (opcional)
+        novaTela.setSize(this.getSize());        
+        novaTela.setLocation(this.getLocation()); 
         novaTela.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_LbVoltarLoginMouseClicked

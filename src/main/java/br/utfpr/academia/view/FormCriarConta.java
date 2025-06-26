@@ -11,7 +11,8 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author luism
+ * @Author Isabely Aparecedia Gomes da Costa RA: 2337541
+ * @Author Luana Monteiro Ferreira
  */
 public class FormCriarConta extends javax.swing.JFrame {
 
@@ -296,8 +297,8 @@ public class FormCriarConta extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Cadastro realizado com sucesso!");
 
             FormPrincipal novaTela = new FormPrincipal();
-            novaTela.setSize(this.getSize());        // <-- Mesmo tamanho da tela anterior
-            novaTela.setLocation(this.getLocation()); // <-- Mesma posição (opcional)
+            novaTela.setSize(this.getSize());        
+            novaTela.setLocation(this.getLocation()); 
             novaTela.setVisible(true);
             this.dispose();
         } catch (Exception e) {
@@ -323,8 +324,8 @@ public class FormCriarConta extends javax.swing.JFrame {
 
     private void LbVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LbVoltarMouseClicked
         FormPrincipal novaTela = new FormPrincipal();
-        novaTela.setSize(this.getSize());        // <-- Mesmo tamanho da tela anterior
-        novaTela.setLocation(this.getLocation()); // <-- Mesma posição (opcional)
+        novaTela.setSize(this.getSize());        
+        novaTela.setLocation(this.getLocation()); 
         novaTela.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_LbVoltarMouseClicked

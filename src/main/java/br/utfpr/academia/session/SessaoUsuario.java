@@ -8,7 +8,8 @@ import br.utfpr.academia.model.Usuario;
 
 /**
  * Singleton para guardar o usuário que logou na aplicação
- * @author luism
+ * @Author Isabely Aparecedia Gomes da Costa RA: 2337541
+ * @Author Luana Monteiro Ferreira
  */
 public class SessaoUsuario {
 

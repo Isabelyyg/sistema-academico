@@ -1,6 +1,7 @@
 /**
  * @version Product Version: Apache NetBeans IDE 15
- * @author Isabely Aparecedia Gomes da Costa RA: 2337541
+ * @Author Isabely Aparecedia Gomes da Costa RA: 2337541
+ * @Author Luana Monteiro Ferreira
  */
 
 /*
@@ -166,7 +167,7 @@ public class FormPrincipal extends javax.swing.JFrame {
                     JOptionPane.INFORMATION_MESSAGE);
 
             FormPublicacoes novaTela = new FormPublicacoes();
-            novaTela.setSize(this.getSize());        // <-- Mesmo tamanho da tela anterior
+            novaTela.setSize(this.getSize()); // <-- Mesmo tamanho da tela anterior
             novaTela.setLocation(this.getLocation()); // <-- Mesma posição (opcional)
             novaTela.setVisible(true);
             this.dispose();
@@ -188,16 +189,16 @@ public class FormPrincipal extends javax.swing.JFrame {
 
     private void LbCriarContaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LbCriarContaMouseClicked
         FormCriarConta novaTela = new FormCriarConta();
-        novaTela.setSize(this.getSize());        // <-- Mesmo tamanho da tela anterior
-        novaTela.setLocation(this.getLocation()); // <-- Mesma posição (opcional)
+        novaTela.setSize(this.getSize());        
+        novaTela.setLocation(this.getLocation()); 
         novaTela.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_LbCriarContaMouseClicked
 
     private void LbRecuperarSenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LbRecuperarSenhaMouseClicked
         FormRecuperarSenha novaTela = new FormRecuperarSenha();
-        novaTela.setSize(this.getSize());        // <-- Mesmo tamanho da tela anterior
-        novaTela.setLocation(this.getLocation()); // <-- Mesma posição (opcional)
+        novaTela.setSize(this.getSize());        
+        novaTela.setLocation(this.getLocation()); 
         novaTela.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_LbRecuperarSenhaMouseClicked

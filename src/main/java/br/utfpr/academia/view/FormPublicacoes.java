@@ -14,7 +14,8 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author luism
+ * @Author Isabely Aparecedia Gomes da Costa RA: 2337541
+ * @Author Luana Monteiro Ferreira
  */
 public class FormPublicacoes extends javax.swing.JFrame {
 
@@ -198,8 +199,8 @@ public class FormPublicacoes extends javax.swing.JFrame {
 
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
         FormPerfil novaTela = new FormPerfil();
-        novaTela.setSize(this.getSize());        // <-- Mesmo tamanho da tela anterior
-        novaTela.setLocation(this.getLocation()); // <-- Mesma posição (opcional)
+        novaTela.setSize(this.getSize());        
+        novaTela.setLocation(this.getLocation()); 
         novaTela.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenu1MouseClicked
