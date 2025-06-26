@@ -16,4 +16,8 @@ public class ValidacaoService {
         return senha != null && senha.length() >= 8 
                 && senha.matches(".*[!@#$%^&*()\\-+=].*");
     }
+    
+    public static boolean senhasConferem(String senha, String confirmarSenha) {
+        return senha.equals(confirmarSenha);
+    }
 }

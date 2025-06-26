@@ -24,8 +24,8 @@ public class UsuarioDAO {
             throw new IllegalArgumentException("Senha deve ter 8+ caracteres e pelo menos 1 símbolo");
         }
 
-        String sql = "INSERT INTO usuarios (email, senha, nome, curso, semestre, pergunta_secreta, resposta_secreta, foto, interesses, perfil_publico) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO usuarios (email, senha, nome, curso, semestre, pergunta_secreta, resposta_secreta, perfil_publico) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setString(1, usuario.getEmail());
@@ -35,9 +35,7 @@ public class UsuarioDAO {
             stmt.setInt(5, usuario.getSemestre());
             stmt.setString(6, usuario.getPerguntaSecreta());
             stmt.setString(7, usuario.getRespostaSecreta());
-            stmt.setBytes(8, usuario.getFoto());
-            stmt.setString(9, usuario.getInteresses());
-            stmt.setBoolean(10, usuario.isPerfilPublico());
+            stmt.setBoolean(8, true);
 
             int affectedRows = stmt.executeUpdate();
 

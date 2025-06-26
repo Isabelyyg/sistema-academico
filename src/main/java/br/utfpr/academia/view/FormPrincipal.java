@@ -80,6 +80,11 @@ public class FormPrincipal extends javax.swing.JFrame {
         jLabel2.setText("Esqueceu sua senha? Troque aqui!");
 
         jLabel5.setText("Não possui uma conta? Crie aqui!");
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -133,6 +138,14 @@ public class FormPrincipal extends javax.swing.JFrame {
         String email = jTextField2.getText().trim();
         String senha = new String(jPasswordField2.getPassword()).trim();
 
+        if (email.isEmpty() || senha.isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "Email e senha são obrigatórios.",
+                    "Campos obrigatórios",
+                    JOptionPane.WARNING_MESSAGE);
+            return; // Sai do método sem tentar autenticar
+        }
+
         try {
             Usuario usuarioAutenticado = new LoginController().autenticar(email, senha);
 
@@ -162,6 +175,14 @@ public class FormPrincipal extends javax.swing.JFrame {
     private void jPasswordField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordField2ActionPerformed
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        FormCriarConta novaTela = new FormCriarConta();
+        novaTela.setSize(this.getSize());        // <-- Mesmo tamanho da tela anterior
+        novaTela.setLocation(this.getLocation()); // <-- Mesma posição (opcional)
+        novaTela.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel5MouseClicked
 
     /**
      * @param args the command line arguments
