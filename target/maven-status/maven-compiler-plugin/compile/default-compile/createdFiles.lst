@@ -2,6 +2,8 @@ br\utfpr\academia\model\Publicacao$Comentario.class
 br\utfpr\academia\model\Publicacao$Visibilidade.class
 br\utfpr\academia\dao\Conexao.class
 br\utfpr\academia\view\FormPrincipal$5.class
+br\utfpr\academia\view\FormRecuperarSenha$4.class
+br\utfpr\academia\view\FormRecuperarSenha.class
 br\utfpr\academia\view\FormCriarConta$6.class
 br\utfpr\academia\model\Usuario.class
 br\utfpr\academia\model\Publicacao$Curtida.class
@@ -10,6 +12,7 @@ br\utfpr\academia\model\Publicacao$TipoMidia.class
 br\utfpr\academia\view\FormCriarConta$3.class
 br\utfpr\academia\view\FormPrincipal$2.class
 br\utfpr\academia\view\FormCriarConta$2.class
+br\utfpr\academia\view\FormCriarConta$8.class
 br\utfpr\academia\view\FormPrincipal.class
 br\utfpr\academia\view\LoginView.class
 br\utfpr\academia\view\RecuperacaoSenhaView.class
@@ -19,6 +22,7 @@ br\utfpr\academia\model\Publicacao.class
 br\utfpr\academia\view\FormPrincipal$4.class
 br\utfpr\academia\view\CadastroView.class
 br\utfpr\academia\view\FormCriarConta$5.class
+br\utfpr\academia\view\FormRecuperarSenha$1.class
 br\utfpr\academia\controller\PublicacaoController.class
 br\utfpr\academia\controller\LoginController.class
 br\utfpr\academia\view\FormCriarConta.class
@@ -26,9 +30,12 @@ br\utfpr\academia\service\ModeracaoService.class
 br\utfpr\academia\view\FormPrincipal$1.class
 br\utfpr\academia\controller\UsuarioController.class
 br\utfpr\academia\dao\UsuarioDAO.class
+br\utfpr\academia\view\FormPrincipal$6.class
+br\utfpr\academia\view\FormRecuperarSenha$3.class
 br\utfpr\academia\view\FormCriarConta$7.class
 br\utfpr\academia\view\FormPublicacoes.class
 br\utfpr\academia\view\FormCriarConta$1.class
+br\utfpr\academia\view\FormRecuperarSenha$2.class
 br\utfpr\academia\view\FormCriarConta$4.class
 br\utfpr\academia\view\FormPrincipal$3.class
 br\utfpr\academia\service\ValidacaoService.class

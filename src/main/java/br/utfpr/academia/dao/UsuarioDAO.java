@@ -98,8 +98,8 @@ public class UsuarioDAO {
             if (rs.next()) {
                 return rs.getString("senha");
             }
+            
             throw new IllegalArgumentException("Combinação email/resposta secreta inválida");
-
         } catch (SQLException e) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, "Erro na recuperação", e);
             throw new RuntimeException("Erro ao recuperar senha", e);
