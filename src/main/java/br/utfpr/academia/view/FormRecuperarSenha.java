@@ -35,7 +35,7 @@ public class FormRecuperarSenha extends javax.swing.JFrame {
         LbEmail = new javax.swing.JLabel();
         InputEmail = new javax.swing.JTextField();
         LbFraseSecreta = new javax.swing.JLabel();
-        InputFraseScreta = new javax.swing.JTextField();
+        InputFraseSecreta = new javax.swing.JTextField();
         LbVoltarLogin = new javax.swing.JLabel();
         btRecuperar = new javax.swing.JButton();
 
@@ -46,6 +46,7 @@ public class FormRecuperarSenha extends javax.swing.JFrame {
 
         LbEmail.setText("Email");
 
+        InputEmail.setPreferredSize(new java.awt.Dimension(265, 22));
         InputEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 InputEmailActionPerformed(evt);
@@ -54,13 +55,14 @@ public class FormRecuperarSenha extends javax.swing.JFrame {
 
         LbFraseSecreta.setText("Frase Secreta");
 
-        InputFraseScreta.addActionListener(new java.awt.event.ActionListener() {
+        InputFraseSecreta.setPreferredSize(new java.awt.Dimension(265, 22));
+        InputFraseSecreta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InputFraseScretaActionPerformed(evt);
+                InputFraseSecretaActionPerformed(evt);
             }
         });
 
-        LbVoltarLogin.setText("Lembrou da senha? Entre aqui!");
+        LbVoltarLogin.setText("Lembrou da senha? Entrar");
         LbVoltarLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 LbVoltarLoginMouseClicked(evt);
@@ -84,43 +86,34 @@ public class FormRecuperarSenha extends javax.swing.JFrame {
                         .addGap(207, 207, 207)
                         .addComponent(Titulo))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(142, 142, 142)
-                        .addComponent(InputFraseScreta, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(143, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(142, 142, 142)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(LbEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(InputEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(LbFraseSecreta, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btRecuperar, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(LbVoltarLogin)
-                            .addGap(103, 103, 103)))
-                    .addContainerGap(143, Short.MAX_VALUE)))
+                        .addGap(143, 143, 143)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(InputFraseSecreta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(LbFraseSecreta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(InputEmail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(LbEmail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(LbVoltarLogin, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btRecuperar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(142, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addGap(50, 50, 50)
                 .addComponent(Titulo)
-                .addGap(148, 148, 148)
-                .addComponent(InputFraseScreta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(169, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(107, 107, 107)
-                    .addComponent(LbEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(10, 10, 10)
-                    .addComponent(InputEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(15, 15, 15)
-                    .addComponent(LbFraseSecreta, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(39, 39, 39)
-                    .addComponent(LbVoltarLogin)
-                    .addGap(15, 15, 15)
-                    .addComponent(btRecuperar)
-                    .addContainerGap(107, Short.MAX_VALUE)))
+                .addGap(40, 40, 40)
+                .addComponent(LbEmail)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(InputEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(LbFraseSecreta)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(InputFraseSecreta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addComponent(LbVoltarLogin)
+                .addGap(20, 20, 20)
+                .addComponent(btRecuperar)
+                .addContainerGap(110, Short.MAX_VALUE))
         );
 
         pack();
@@ -128,7 +121,7 @@ public class FormRecuperarSenha extends javax.swing.JFrame {
 
     private void btRecuperarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRecuperarActionPerformed
         String email = InputEmail.getText().trim();
-        String fraseSecreta = InputFraseScreta.getText().trim();
+        String fraseSecreta = InputFraseSecreta.getText().trim();
 
         if (email.isEmpty() || fraseSecreta.isEmpty()) {
             JOptionPane.showMessageDialog(this,
@@ -161,14 +154,6 @@ public class FormRecuperarSenha extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btRecuperarActionPerformed
 
-    private void InputEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputEmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_InputEmailActionPerformed
-
-    private void InputFraseScretaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputFraseScretaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_InputFraseScretaActionPerformed
-
     private void LbVoltarLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LbVoltarLoginMouseClicked
         FormPrincipal novaTela = new FormPrincipal();
         novaTela.setSize(this.getSize());        // <-- Mesmo tamanho da tela anterior
@@ -176,6 +161,14 @@ public class FormRecuperarSenha extends javax.swing.JFrame {
         novaTela.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_LbVoltarLoginMouseClicked
+
+    private void InputEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InputEmailActionPerformed
+
+    private void InputFraseSecretaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputFraseSecretaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InputFraseSecretaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -204,7 +197,7 @@ public class FormRecuperarSenha extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField InputEmail;
-    private javax.swing.JTextField InputFraseScreta;
+    private javax.swing.JTextField InputFraseSecreta;
     private javax.swing.JLabel LbEmail;
     private javax.swing.JLabel LbFraseSecreta;
     private javax.swing.JLabel LbVoltarLogin;
