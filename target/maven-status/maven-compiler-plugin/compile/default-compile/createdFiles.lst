@@ -14,6 +14,7 @@ br\utfpr\academia\view\FormPrincipal$2.class
 br\utfpr\academia\view\FormCriarConta$2.class
 br\utfpr\academia\view\FormCriarConta$8.class
 br\utfpr\academia\view\FormPrincipal.class
+br\utfpr\academia\view\FormPerfil.class
 br\utfpr\academia\model\Comentario.class
 br\utfpr\academia\model\Publicacao.class
 br\utfpr\academia\view\FormPrincipal$4.class
@@ -24,6 +25,7 @@ br\utfpr\academia\controller\LoginController.class
 br\utfpr\academia\session\SessaoUsuario.class
 br\utfpr\academia\view\FormCriarConta.class
 br\utfpr\academia\service\ModeracaoService.class
+br\utfpr\academia\view\FormPublicacoes$2.class
 br\utfpr\academia\view\FormPrincipal$1.class
 br\utfpr\academia\controller\UsuarioController.class
 br\utfpr\academia\dao\UsuarioDAO.class

@@ -46,6 +46,8 @@ public class FormPublicacoes extends javax.swing.JFrame {
         BtPub = new javax.swing.JButton();
         PubTable = new javax.swing.JScrollPane();
         PubTableCont = new javax.swing.JTable();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -91,6 +93,16 @@ public class FormPublicacoes extends javax.swing.JFrame {
         ));
         PubTable.setViewportView(PubTableCont);
 
+        jMenu1.setText("Perfil");
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -126,7 +138,7 @@ public class FormPublicacoes extends javax.swing.JFrame {
                 .addComponent(BtPub)
                 .addGap(20, 20, 20)
                 .addComponent(PubTable, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -184,6 +196,14 @@ public class FormPublicacoes extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_BtPubActionPerformed
 
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+        FormPrincipal novaTela = new FormPrincipal();
+        novaTela.setSize(this.getSize());        // <-- Mesmo tamanho da tela anterior
+        novaTela.setLocation(this.getLocation()); // <-- Mesma posição (opcional)
+        novaTela.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenu1MouseClicked
+
     private void atualizarTabelaPublicacoes() {
         List<Publicacao> publicacoes = new PublicacaoController().listarTodasPublicacoes();
 
@@ -236,6 +256,8 @@ public class FormPublicacoes extends javax.swing.JFrame {
     private javax.swing.JTextArea TextAreaCont;
     private javax.swing.JScrollPane TextAreaPub;
     private javax.swing.JLabel Titulo;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
