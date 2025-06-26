@@ -1,0 +1,15 @@
+services:
+  mysql:
+    container_name: "sistema-academico"
+    image: "mysql"
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_HOST: "%"
+      MYSQL_ROOT_PASSWORD: "password"
+      MYSQL_DATABASE: "sistema_academico"
+    volumes:
+      - db-data:/var/lib/mysql
+
+volumes:
+  db-data:
