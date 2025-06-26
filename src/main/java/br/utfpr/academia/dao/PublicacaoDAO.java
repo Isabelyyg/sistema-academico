@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PublicacaoDAO {
+
     private Connection connection;
 
     public PublicacaoDAO() {
@@ -14,17 +15,12 @@ public class PublicacaoDAO {
 
     // RF08 - Criação de publicações
     public boolean criarPublicacao(Publicacao publicacao) {
-        String sql = "INSERT INTO publicacoes (usuario_id, conteudo, imagem, link, tipo_midia) VALUES (?, ?, ?, ?, ?)";
-        
+        String sql = "INSERT INTO publicacoes (usuario_id, conteudo) VALUES (?, ?)";
         try (PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setInt(1, publicacao.getUsuarioId());
             stmt.setString(2, publicacao.getConteudo());
-//            stmt.setString(3, publicacao.getImagem());
-//            stmt.setString(4, publicacao.getLink());
-//            stmt.setString(5, publicacao.getTipoMidia());
-            
             stmt.executeUpdate();
-            
+
             try (ResultSet rs = stmt.getGeneratedKeys()) {
                 if (rs.next()) {
                     publicacao.setId(rs.getInt(1));
@@ -33,6 +29,7 @@ public class PublicacaoDAO {
             }
             return false;
         } catch (SQLException e) {
+            e.printStackTrace();
             throw new RuntimeException("Erro ao criar publicação", e);
         }
     }
@@ -41,18 +38,18 @@ public class PublicacaoDAO {
     public List<Publicacao> listarPublicacoes(int usuarioId, boolean mesmoCurso) {
         List<Publicacao> publicacoes = new ArrayList<>();
         String sql;
-        
+
         if (mesmoCurso) {
-            sql = "SELECT p.* FROM publicacoes p JOIN usuarios u ON p.usuario_id = u.id " +
-                  "WHERE u.id = ? OR u.perfil_publico = TRUE";
+            sql = "SELECT p.* FROM publicacoes p JOIN usuarios u ON p.usuario_id = u.id "
+                    + "WHERE u.id = ? OR u.perfil_publico = TRUE";
         } else {
-            sql = "SELECT p.* FROM publicacoes p JOIN usuarios u ON p.usuario_id = u.id " +
-                  "WHERE u.perfil_publico = TRUE";
+            sql = "SELECT p.* FROM publicacoes p JOIN usuarios u ON p.usuario_id = u.id "
+                    + "WHERE u.perfil_publico = TRUE";
         }
-        
+
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, usuarioId);
-            
+
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 Publicacao p = new Publicacao();
@@ -73,13 +70,13 @@ public class PublicacaoDAO {
     // RF09 - Adicionar interação
     public boolean adicionarInteracao(int publicacaoId, int usuarioId, String tipo, String conteudo) {
         String sql = "INSERT INTO interacoes (publicacao_id, usuario_id, tipo, conteudo) VALUES (?, ?, ?, ?)";
-        
+
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, publicacaoId);
             stmt.setInt(2, usuarioId);
             stmt.setString(3, tipo);
 //            stmt.setString(4, ModeracaoService.filtrarPalavroes(conteudo)); // RF12
-            
+
             return stmt.executeUpdate() > 0;
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao adicionar interação", e);

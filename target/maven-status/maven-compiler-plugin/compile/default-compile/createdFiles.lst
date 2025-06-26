@@ -38,4 +38,5 @@ br\utfpr\academia\view\FormCriarConta$1.class
 br\utfpr\academia\view\FormRecuperarSenha$2.class
 br\utfpr\academia\view\FormCriarConta$4.class
 br\utfpr\academia\view\FormPrincipal$3.class
+br\utfpr\academia\view\FormPublicacoes$1.class
 br\utfpr\academia\service\ValidacaoService.class

@@ -4,12 +4,16 @@
  */
 package br.utfpr.academia.view;
 
+import br.utfpr.academia.controller.PublicacaoController;
+import br.utfpr.academia.model.Publicacao;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author luism
  */
 public class FormPublicacoes extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FormPublicacoes.class.getName());
 
     /**
@@ -28,32 +32,142 @@ public class FormPublicacoes extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        Titulo = new javax.swing.JLabel();
+        LbPub = new javax.swing.JLabel();
+        TextAreaPub = new javax.swing.JScrollPane();
+        TextAreaCont = new javax.swing.JTextArea();
+        BtPub = new javax.swing.JButton();
+        PubTable = new javax.swing.JScrollPane();
+        PubTableCont = new javax.swing.JTable();
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(550, 400));
 
-        jLabel1.setText("Novas Publicações");
+        Titulo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Titulo.setText("Publicações");
+
+        LbPub.setText("O que está pensando?");
+
+        TextAreaCont.setColumns(20);
+        TextAreaCont.setRows(5);
+        TextAreaPub.setViewportView(TextAreaCont);
+
+        BtPub.setText("Publicar");
+        BtPub.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtPubActionPerformed(evt);
+            }
+        });
+
+        PubTableCont.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        PubTable.setViewportView(PubTableCont);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(213, 213, 213)
-                .addComponent(jLabel1)
-                .addContainerGap(238, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(BtPub)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(230, 230, 230)
+                                .addComponent(Titulo))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(156, 156, 156)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(LbPub)
+                                    .addComponent(TextAreaPub, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(PubTable, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jLabel1)
-                .addContainerGap(345, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addComponent(Titulo)
+                .addGap(18, 18, 18)
+                .addComponent(LbPub)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(TextAreaPub, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addComponent(BtPub)
+                .addGap(20, 20, 20)
+                .addComponent(PubTable, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BtPubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtPubActionPerformed
+        String textoPublicacao = TextAreaCont.getText().trim();
+
+        if (textoPublicacao.isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "A publicação não pode estar vazia.",
+                    "Campo obrigatório",
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (textoPublicacao.length() > 50) {
+            JOptionPane.showMessageDialog(this,
+                    "A publicação deve ter no máximo 50 caracteres.",
+                    "Limite de caracteres",
+                    JOptionPane.WARNING_MESSAGE);
+        }
+
+        try {
+            Publicacao pub = new Publicacao();
+            pub.setConteudo(textoPublicacao);
+            pub.setUsuarioId(1); // prefixado
+            pub.setTipoMidia(Publicacao.TipoMidia.TEXTO); // prefixado
+            pub.setVisibilidade(Publicacao.Visibilidade.PUBLICO); // prefixado
+
+            new PublicacaoController().criarPublicacao(pub);
+
+            // Se chegou aqui, deu certo!
+            JOptionPane.showMessageDialog(this,
+                    "Publicação feita com sucesso",
+                    "Publicação Criada",
+                    JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this,
+                    ex.getMessage(),
+                    "Erro no Login",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_BtPubActionPerformed
 
     /**
      * @param args the command line arguments
@@ -81,6 +195,14 @@ public class FormPublicacoes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton BtPub;
+    private javax.swing.JLabel LbPub;
+    private javax.swing.JScrollPane PubTable;
+    private javax.swing.JTable PubTableCont;
+    private javax.swing.JTextArea TextAreaCont;
+    private javax.swing.JScrollPane TextAreaPub;
+    private javax.swing.JLabel Titulo;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

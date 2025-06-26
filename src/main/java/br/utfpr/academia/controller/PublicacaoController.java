@@ -11,8 +11,8 @@ public class PublicacaoController {
         this.publicacaoDAO = new PublicacaoDAO();
     }
     
-    public void criarPublicacao(Publicacao publicacao) {
-        publicacaoDAO.criarPublicacao(publicacao);
+    public boolean criarPublicacao(Publicacao publicacao) {
+        return publicacaoDAO.criarPublicacao(publicacao);
     }
     
     public List<Publicacao> listarPublicacoes(int usuarioId, boolean mesmoCurso) {
